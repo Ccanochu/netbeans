@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EncargadoFrame extends javax.swing.JFrame {
 
-        private EncargadoEntregaDAO encargadoDAO;
+    private EncargadoEntregaDAO encargadoDAO;
 
     public EncargadoFrame() {
         initComponents();

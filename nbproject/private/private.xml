@@ -3,10 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/PC/Desktop/restaurante/src/Clases/EncargadoEntrega.java</file>
-            <file>file:/C:/Users/PC/Desktop/restaurante/src/Vista/EncargadoFrame.java</file>
-            <file>file:/C:/Users/PC/Desktop/restaurante/src/Controlador/ConexionBD.java</file>
-            <file>file:/C:/Users/PC/Desktop/restaurante/src/Modelos/EncargadoEntregaDAO.java</file>
+            <file>file:/C:/Users/PC/Desktop/restaurante/src/Vista/MeseroFrame.java</file>
+            <file>file:/C:/Users/PC/Desktop/restaurante/src/Modelos/MeseroDAO.java</file>
         </group>
     </open-files>
 </project-private>
