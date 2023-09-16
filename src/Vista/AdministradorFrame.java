@@ -3,18 +3,47 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista;
+import Modelos.AdministradorDAO;
+import Modelos.UsuarioDAO;
+import Clases.Administrador;
+import Clases.Usuario;
+import java.util.List;
 
-/**
- *
- * @author PC
- */
 public class AdministradorFrame extends javax.swing.JFrame {
-
-    /**
-     * Creates new form AdministradorFrame
-     */
+    
+    private UsuarioDAO usuarioDAO;
+    private AdministradorDAO administradorDAO;
+    
     public AdministradorFrame() {
         initComponents();
+        usuarioDAO = new UsuarioDAO();
+        administradorDAO = new AdministradorDAO(); // Instancia el DAO
+    }
+    
+    public void guardarDatos(){
+        String nombre = txtNombre.getText();
+        String mail = txtMail.getText();
+        String clave = txtClave.getText();
+        int telefono = Integer.parseInt(txtTelefono.getText());
+        String usuario = txtUsuario.getText();
+        int idaux = administradorDAO.obtenerNuevoIdAdmin(); // Debes implementar este método
+
+        // Crear un objeto Mesero con los datos
+        Administrador adminObj = new Administrador();
+        adminObj.setNombre(nombre);
+        adminObj.setEmail(mail);
+        adminObj.setTelefono(telefono);
+        adminObj.setId_administrador(idaux);
+
+        // Crear un objeto Usuario con los datos
+        Usuario usuarioObj = new Usuario();
+        usuarioObj.setUsername(usuario);
+        usuarioObj.setPassword(clave);
+        usuarioObj.setIdaux(idaux);
+
+        // Guardar el administrador
+        administradorDAO.saveAdministrador(adminObj);
+        usuarioDAO.saveUsuarioAdmin(usuarioObj);
     }
 
     /**
@@ -36,7 +65,7 @@ public class AdministradorFrame extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JTextField();
         txtClave = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
+        txtMail = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
 
@@ -55,6 +84,11 @@ public class AdministradorFrame extends javax.swing.JFrame {
         jLabel6.setText("PASSWORD");
 
         btnGuardar.setText("GUARDAR");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,7 +116,7 @@ public class AdministradorFrame extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                                         .addComponent(jLabel6))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -93,7 +127,7 @@ public class AdministradorFrame extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,13 +145,13 @@ public class AdministradorFrame extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel6)
                     .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -126,17 +160,21 @@ public class AdministradorFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 300, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 200, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        guardarDatos();
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,7 +221,7 @@ public class AdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtClave;
-    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtMail;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtUsuario;

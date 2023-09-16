@@ -32,7 +32,7 @@ public class SeleccionMesasFrame extends javax.swing.JFrame {
     private void cargarNumerosDeMesa() {
         // Utiliza el MeseroDAO para obtener los números de mesa
         mesasSeleccionadas = new ArrayList<>();
-        List<Integer> numerosMesa = meseroDAO.obtenerNumerosDeMesaPorEstado("libre");
+        List<Integer> numerosMesa = meseroDAO.obtenerMesasByEstado("libre");
 
         // Llena tu tabla con los datos obtenidos
         DefaultTableModel model = (DefaultTableModel) tbMesasDisponibles.getModel();

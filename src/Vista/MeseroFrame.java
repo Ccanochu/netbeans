@@ -30,8 +30,8 @@ public class MeseroFrame extends javax.swing.JFrame {
         cbxNumMeseros.removeAllItems();
     
         // Llenar el combo con los números de mesero por estado
-        List<Integer> numerosDeMesero = meseroDAO.obtenerNumerosDeMeseroPorEstado("libre");
-        for (Integer numero : numerosDeMesero) {
+        List<Integer> listaMesas = meseroDAO.obtenerMesasByEstado("libre");
+        for (Integer numero : listaMesas) {
             cbxNumMeseros.addItem(numero.toString());
         }
     }
@@ -249,18 +249,18 @@ public class MeseroFrame extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         guardarDatos();
-        actualizarTBNumMesas();
+        actualizarEstadoMesasSeleccionadasPorMesero();
         cargarCombo();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnManNumMeserosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManNumMeserosActionPerformed
-        ManNumMeserosFrame manNumMeserosFrame = new ManNumMeserosFrame();
+        ManMeserosFrame manNumMeserosFrame = new ManMeserosFrame();
         this.dispose(); // Cierra el JFrame actual
         manNumMeserosFrame.setVisible(true);
     }//GEN-LAST:event_btnManNumMeserosActionPerformed
 
     private void btnManNumMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManNumMesasActionPerformed
-        ManNumMesasFrame manNumMesasFrame = new ManNumMesasFrame();
+        ManMesasFrame manNumMesasFrame = new ManMesasFrame();
         this.dispose(); // Cierra el JFrame actual
         manNumMesasFrame.setVisible(true);
     }//GEN-LAST:event_btnManNumMesasActionPerformed
@@ -302,12 +302,12 @@ public class MeseroFrame extends javax.swing.JFrame {
 
         // Guardar el mesero y el usuario usando los DAOs
         meseroDAO.saveMesero(mesero);
-        usuarioDAO.saveUsuario(usuarioObj);
+        usuarioDAO.saveUsuarioMesero(usuarioObj);
 
         meseroDAO.actualizarEstadoMesero(numMeseros);
     }
     
-    public void actualizarTBNumMesas(){
+    public void actualizarEstadoMesasSeleccionadasPorMesero(){
         String mesasSeleccionadas = txtNoEditMesasSeleccionadas.getText();
         String[] mesasArray = mesasSeleccionadas.split(",");
 

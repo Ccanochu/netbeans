@@ -11,36 +11,64 @@ import java.security.Timestamp;
  * @author PC
  */
 public class Venta {
-    private int ID_Venta;
-    private int ID_Producto;
-    private int cantidad;
+    private int idVenta;
+    private int idCliente;
+    private int numeroMesa;
+    private String atendidoPor;
+    private String fecha; 
     private double total;
-    private double monto_Pagado;
-    private double cambio;
-    private Timestamp fecha_Hora;
 
-    public int getID_Venta() {
-        return ID_Venta;
+
+    public Venta() {
     }
 
-    public void setID_Venta(int ID_Venta) {
-        this.ID_Venta = ID_Venta;
+    public Venta(int idVenta, int idCliente, int numeroMesa, String atendidoPor, String fecha, double total) {
+        this.idVenta = idVenta;
+        this.idCliente = idCliente;
+        this.numeroMesa = numeroMesa;
+        this.atendidoPor = atendidoPor;
+        this.fecha = fecha;
+        this.total = total;
     }
 
-    public int getID_Producto() {
-        return ID_Producto;
+    public int getIdVenta() {
+        return idVenta;
     }
 
-    public void setID_Producto(int ID_Producto) {
-        this.ID_Producto = ID_Producto;
+    public void setIdVenta(int idVenta) {
+        this.idVenta = idVenta;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public int getNumeroMesa() {
+        return numeroMesa;
+    }
+
+    public void setNumeroMesa(int numeroMesa) {
+        this.numeroMesa = numeroMesa;
+    }
+
+    public String getAtendidoPor() {
+        return atendidoPor;
+    }
+
+    public void setAtendidoPor(String atendidoPor) {
+        this.atendidoPor = atendidoPor;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
     public double getTotal() {
@@ -51,29 +79,5 @@ public class Venta {
         this.total = total;
     }
 
-    public double getMonto_Pagado() {
-        return monto_Pagado;
-    }
-
-    public void setMonto_Pagado(double monto_Pagado) {
-        this.monto_Pagado = monto_Pagado;
-    }
-
-    public double getCambio() {
-        return cambio;
-    }
-
-    public void setCambio(double cambio) {
-        this.cambio = cambio;
-    }
-
-    public Timestamp getFecha_Hora() {
-        return fecha_Hora;
-    }
-
-    public void setFecha_Hora(Timestamp fecha_Hora) {
-        this.fecha_Hora = fecha_Hora;
-    }
-    
     
 }

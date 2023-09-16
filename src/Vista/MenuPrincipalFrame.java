@@ -142,7 +142,9 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGoToMenuActionPerformed
 
     private void btnGoToFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoToFacturasActionPerformed
-        
+        FacturaFrame facturaFrame = new FacturaFrame();
+        this.dispose(); // Cierra el JFrame actual
+        facturaFrame.setVisible(true);
     }//GEN-LAST:event_btnGoToFacturasActionPerformed
 
     private void btnGoToReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoToReportesActionPerformed

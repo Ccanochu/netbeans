@@ -34,7 +34,7 @@ public class MeseroDAO {
             if (rowsAffected > 0) {
                 System.out.println("Mesero guardado con éxito.");
             } else {
-                System.out.println("No se pudo guardar el Mesero.");
+                System.out.println("No se pudo guardar el mesero.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -61,9 +61,9 @@ public class MeseroDAO {
         return numerosMesero;
     }
     
-    public List<Integer> obtenerNumerosDeMeseroPorEstado(String estado) {
-        String sql = "SELECT numero_mesero FROM aux_num_mesero WHERE estado = ?";
-        List<Integer> numerosMesero = new ArrayList<>();
+    public List<Integer> getMesasByEstado(String estado) {
+        String sql = "SELECT numero_mesa FROM aux_num_mesa WHERE estado = ?";
+        List<Integer> listaMesas = new ArrayList<>();
 
         try (Connection connection = ConexionBD.obtenerConexion();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -72,14 +72,14 @@ public class MeseroDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                int numeroMesero = resultSet.getInt("numero_mesero");
-                numerosMesero.add(numeroMesero);
+                int numeroMesero = resultSet.getInt("numero_mesa");
+                listaMesas.add(numeroMesero);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return numerosMesero;
+        return listaMesas;
     }
 
     
@@ -199,7 +199,7 @@ public class MeseroDAO {
         return numerosMesa;
     }
     
-    public List<Integer> obtenerNumerosDeMesaPorEstado(String estado) {
+    public List<Integer> obtenerMesasByEstado(String estado) {
         String sql = "SELECT numero_mesa FROM aux_num_mesa WHERE estado = ?";
         List<Integer> numerosMesa = new ArrayList<>();
 

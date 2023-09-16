@@ -12,10 +12,11 @@ package Vista;
 import Modelos.UsuarioDAO;
 
 import Clases.Usuario;
+import singleton.Sesion;
 
 public class UsuarioFrame extends javax.swing.JFrame {
 
-    
+    Sesion sesion;
     private UsuarioDAO usuarioDAO;
     /**
      * Creates new form UsuarioFrame
@@ -23,7 +24,7 @@ public class UsuarioFrame extends javax.swing.JFrame {
     public UsuarioFrame() {
         initComponents();
         usuarioDAO = new UsuarioDAO(); // Instancia el DAO
-
+        sesion = Sesion.getInstance();
     }
 
     /**
@@ -57,7 +58,7 @@ public class UsuarioFrame extends javax.swing.JFrame {
 
         jLabel3.setText("CONTRASEÑA");
 
-        txtUsuario.setText("user");
+        txtUsuario.setText("abc");
 
         txtClave.setText("123");
 
@@ -101,15 +102,19 @@ public class UsuarioFrame extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String username = txtUsuario.getText();
-        String contraseña = txtClave.getText(); // Obtener la contraseña como String
+        String contrasena = txtClave.getText(); // Obtener la contraseña como String
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
-        boolean credencialesCorrectas = usuarioDAO.autenticarUsuario(username, contraseña);
+        boolean credencialesCorrectas = usuarioDAO.autenticarUsuario(username, contrasena);
 
         if (credencialesCorrectas) {
-            EncargadoFrame encargadoFrame = new EncargadoFrame();
+            Sesion sesion = Sesion.getInstance();
+            sesion.setNombreUsuario(username);
+            sesion.setContrasena(contrasena);
+            
+            FacturaFrame facturaFrame = new FacturaFrame();
             this.dispose(); // Cierra el JFrame actual
-            encargadoFrame.setVisible(true);
+            facturaFrame.setVisible(true);
 
         } else {
             // Mostrar un mensaje de error al usuario
