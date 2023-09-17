@@ -26,6 +26,7 @@ public class MenuFrame extends javax.swing.JFrame {
     
     public MenuFrame() {
         initComponents();
+        setLocationRelativeTo(null);
         menuDAO = new MenuDAO();
         pedidoDAO = new PedidoDAO();
         gestionPedidos = new GestionPedidos();
@@ -51,6 +52,7 @@ public class MenuFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnActivarCbxBebidas = new javax.swing.JButton();
         btnActivarCbxPlatos = new javax.swing.JButton();
+        btnAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +101,13 @@ public class MenuFrame extends javax.swing.JFrame {
             }
         });
 
+        btnAtras.setText("ATRAS");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -139,7 +148,9 @@ public class MenuFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnConfirmarPedido)
-                        .addGap(253, 253, 253))
+                        .addGap(157, 157, 157)
+                        .addComponent(btnAtras)
+                        .addGap(21, 21, 21))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(327, 327, 327))))
@@ -168,7 +179,9 @@ public class MenuFrame extends javax.swing.JFrame {
                     .addComponent(txtCantidadBebida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(65, 65, 65)
-                .addComponent(btnConfirmarPedido)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConfirmarPedido)
+                    .addComponent(btnAtras))
                 .addGap(43, 43, 43))
         );
 
@@ -248,6 +261,12 @@ public class MenuFrame extends javax.swing.JFrame {
         cargarComboBebidas();
     }//GEN-LAST:event_btnActivarCbxBebidasActionPerformed
 
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        MenuPrincipalFrame menuPrincipalFrame = new MenuPrincipalFrame();
+        this.dispose(); // Cierra el JFrame actual
+        menuPrincipalFrame.setVisible(true);
+    }//GEN-LAST:event_btnAtrasActionPerformed
+
     public void cargarComboPlatos(){
         // Vaciar el JComboBox de platos
         cbxPlato.removeAllItems();
@@ -308,6 +327,7 @@ public class MenuFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActivarCbxBebidas;
     private javax.swing.JButton btnActivarCbxPlatos;
+    private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnBebidas;
     private javax.swing.JButton btnConfirmarPedido;
     private javax.swing.JButton btnPlatos;

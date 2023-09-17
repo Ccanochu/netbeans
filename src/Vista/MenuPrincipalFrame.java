@@ -15,6 +15,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
      */
     public MenuPrincipalFrame() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -82,8 +83,8 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(278, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnGoToReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -97,12 +98,12 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                         .addComponent(btnGoToMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
                         .addComponent(btnGoToFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGap(113, 113, 113))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addGap(153, 153, 153)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnGoToFacturas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGoToMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -112,33 +113,33 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                     .addComponent(btnGoToAcercaDe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGoToCalculadora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGoToReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 300, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 200, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGoToUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoToUsuariosActionPerformed
-        
+        OpcionesRegistroUsuario opcionesRegistroUsuario = new OpcionesRegistroUsuario();
+        this.dispose(); // Cierra el JFrame actual
+        opcionesRegistroUsuario.setVisible(true);
     }//GEN-LAST:event_btnGoToUsuariosActionPerformed
 
     private void btnGoToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoToMenuActionPerformed
-        
+        MenuFrame menuFrame = new MenuFrame();
+        this.dispose(); // Cierra el JFrame actual
+        menuFrame.setVisible(true);
     }//GEN-LAST:event_btnGoToMenuActionPerformed
 
     private void btnGoToFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoToFacturasActionPerformed
@@ -148,15 +149,21 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGoToFacturasActionPerformed
 
     private void btnGoToReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoToReportesActionPerformed
-        
+        ReporteFrame reporteFrame = new ReporteFrame();
+        this.dispose(); // Cierra el JFrame actual
+        reporteFrame.setVisible(true);
     }//GEN-LAST:event_btnGoToReportesActionPerformed
 
     private void btnGoToCalculadoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoToCalculadoraActionPerformed
-        
+        Calculadora.CalculadoraGUI calculadoraGUI = new Calculadora.CalculadoraGUI();
+        this.dispose(); // Cierra el JFrame actual
+        calculadoraGUI.setVisible(true);
     }//GEN-LAST:event_btnGoToCalculadoraActionPerformed
 
     private void btnGoToAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoToAcercaDeActionPerformed
-        
+        AcercaDeFrame acercaDeFrame = new AcercaDeFrame();
+        this.dispose(); // Cierra el JFrame actual
+        acercaDeFrame.setVisible(true);
     }//GEN-LAST:event_btnGoToAcercaDeActionPerformed
 
     /**

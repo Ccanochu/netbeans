@@ -1,5 +1,6 @@
 package Calculadora;
 
+import Vista.MenuPrincipalFrame;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -11,9 +12,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public final class CalculadoraGUI extends JFrame {
+    
+    private static List<CalculadoraGUI> ventanasAbiertas = new ArrayList<>();
+
     String expresion = "";
     
     
@@ -28,7 +33,10 @@ public final class CalculadoraGUI extends JFrame {
     
     public CalculadoraGUI() {
         initComponents();
+        setLocationRelativeTo(null);
+        
     }
+    
     private void btnNumeroActionPerformed(java.awt.event.ActionEvent evt) {
         JButton botonPresionado = (JButton) evt.getSource();
         String textoBoton = botonPresionado.getText();
@@ -78,7 +86,7 @@ public final class CalculadoraGUI extends JFrame {
         btnIgual = new javax.swing.JButton();
         resultadoPantalla = new javax.swing.JLabel();
         inputPantalla = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        btnAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -309,13 +317,10 @@ public final class CalculadoraGUI extends JFrame {
         inputPantalla.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         inputPantalla.setText("0");
 
-        jRadioButton1.setBackground(new java.awt.Color(151, 158, 170));
-        jRadioButton1.setText("Siempre visible");
-        jRadioButton1.setBorder(null);
-        jRadioButton1.setFocusable(false);
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAtras.setText("ATRAS");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                btnAtrasActionPerformed(evt);
             }
         });
 
@@ -328,23 +333,23 @@ public final class CalculadoraGUI extends JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(inputPantalla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(resultadoPantalla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
+                        .addComponent(btnAtras)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jRadioButton1)
+                .addGap(18, 18, 18)
+                .addComponent(btnAtras)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(resultadoPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -356,10 +361,6 @@ public final class CalculadoraGUI extends JFrame {
     private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
         
     }//GEN-LAST:event_formKeyReleased
-
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void btnPad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPad1ActionPerformed
         btnNumeroActionPerformed(evt);
@@ -503,9 +504,16 @@ public final class CalculadoraGUI extends JFrame {
     }
     }//GEN-LAST:event_btnPorcentajeActionPerformed
 
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        MenuPrincipalFrame menuPrincipalFrame = new MenuPrincipalFrame();
+        this.dispose(); // Cierra el JFrame actual
+        menuPrincipalFrame.setVisible(true);
+    }//GEN-LAST:event_btnAtrasActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnBorrarDigito;
     private javax.swing.JButton btnC;
     private javax.swing.JButton btnCE;
@@ -533,7 +541,6 @@ public final class CalculadoraGUI extends JFrame {
     private javax.swing.JLabel inputPantalla;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JLabel resultadoPantalla;
     // End of variables declaration//GEN-END:variables
 

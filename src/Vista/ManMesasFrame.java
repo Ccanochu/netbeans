@@ -16,6 +16,7 @@ public class ManMesasFrame extends javax.swing.JFrame {
     
     public ManMesasFrame() {
         initComponents();
+        setLocationRelativeTo(null);
         meseroDAO = new MeseroDAO();
         cargarNumerosDeMesa();
     }
@@ -45,6 +46,7 @@ public class ManMesasFrame extends javax.swing.JFrame {
         tbNumeroMesas = new javax.swing.JTable();
         btnAumentarMesas = new javax.swing.JButton();
         btnDisminuirMesas = new javax.swing.JButton();
+        btnAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,6 +79,13 @@ public class ManMesasFrame extends javax.swing.JFrame {
             }
         });
 
+        btnAtras.setText("ATRAS");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -88,11 +97,14 @@ public class ManMesasFrame extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAumentarMesas)
-                            .addComponent(btnDisminuirMesas))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAtras)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(54, 54, 54)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnAumentarMesas)
+                                    .addComponent(btnDisminuirMesas))))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -108,7 +120,9 @@ public class ManMesasFrame extends javax.swing.JFrame {
                         .addGap(68, 68, 68)
                         .addComponent(btnAumentarMesas)
                         .addGap(62, 62, 62)
-                        .addComponent(btnDisminuirMesas)))
+                        .addComponent(btnDisminuirMesas)
+                        .addGap(46, 46, 46)
+                        .addComponent(btnAtras)))
                 .addContainerGap(85, Short.MAX_VALUE))
         );
 
@@ -116,15 +130,17 @@ public class ManMesasFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(46, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -139,6 +155,12 @@ public class ManMesasFrame extends javax.swing.JFrame {
         meseroDAO.addDisminuirNumMesas();
         cargarNumerosDeMesa();
     }//GEN-LAST:event_btnDisminuirMesasActionPerformed
+
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        MeseroFrame meseroFrame = new MeseroFrame();
+        this.dispose(); // Cierra el JFrame actual
+        meseroFrame.setVisible(true);
+    }//GEN-LAST:event_btnAtrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,6 +199,7 @@ public class ManMesasFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnAumentarMesas;
     private javax.swing.JButton btnDisminuirMesas;
     private javax.swing.JLabel jLabel1;

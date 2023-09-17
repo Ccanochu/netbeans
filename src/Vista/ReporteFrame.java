@@ -28,6 +28,7 @@ public class ReporteFrame extends javax.swing.JFrame {
     
     public ReporteFrame() {
         initComponents();
+        setLocationRelativeTo(null);
         reporteDAO = new ReporteDAO();
 
         cardLayout = new CardLayout();
@@ -111,6 +112,7 @@ public class ReporteFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         pnlGrafico = new javax.swing.JPanel();
         cbxGrafico = new javax.swing.JComboBox<>();
+        btnAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,6 +131,13 @@ public class ReporteFrame extends javax.swing.JFrame {
 
         cbxGrafico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gráfico 1 ", "Gráfico 2" }));
 
+        btnAtras.setText("ATRAS");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -145,6 +154,8 @@ public class ReporteFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(330, 330, 330)
                 .addComponent(cbxGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(152, 152, 152)
+                .addComponent(btnAtras)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -153,7 +164,9 @@ public class ReporteFrame extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jLabel1)
                 .addGap(42, 42, 42)
-                .addComponent(cbxGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cbxGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAtras))
                 .addGap(18, 18, 18)
                 .addComponent(pnlGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(211, Short.MAX_VALUE))
@@ -176,6 +189,12 @@ public class ReporteFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        MenuPrincipalFrame menuPrincipalFrame = new MenuPrincipalFrame();
+        this.dispose(); // Cierra el JFrame actual
+        menuPrincipalFrame.setVisible(true);
+    }//GEN-LAST:event_btnAtrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,6 +232,7 @@ public class ReporteFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAtras;
     private javax.swing.JComboBox<String> cbxGrafico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

@@ -4,6 +4,9 @@
  */
 package Vista;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author PC
@@ -15,6 +18,29 @@ public class OpcionesRegistroUsuario extends javax.swing.JFrame {
      */
     public OpcionesRegistroUsuario() {
         initComponents();
+        setLocationRelativeTo(null);
+        
+        // Supongamos que tienes un JComboBox llamado comboBoxTipoUsuario
+        comboBoxTipoUsuario.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String seleccion = (String) comboBoxTipoUsuario.getSelectedItem();
+                switch (seleccion) {
+                    case "Administrador":
+                        AdministradorFrame administradorFrame = new AdministradorFrame();
+                        administradorFrame.setVisible(true);
+                        break;
+                    case "Mesero":
+                        MeseroFrame meseroFrame = new MeseroFrame();
+                        meseroFrame.setVisible(true);
+                        break;
+                    // Puedes agregar más casos según sea necesario
+                    default:
+                        break;
+                }
+                dispose(); // Cierra el JFrame actual
+            }
+        });
+
     }
 
     /**
@@ -27,40 +53,60 @@ public class OpcionesRegistroUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboBoxTipoUsuario = new javax.swing.JComboBox<>();
+        btnAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("ELIGE QUE NECESITAS REGISTRAR");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Mesero" }));
+        comboBoxTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir", "Administrador", "Mesero" }));
+
+        btnAtras.setText("ATRAS");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(0, 295, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(89, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnAtras)
+                        .addGap(31, 31, 31))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jLabel1))
+                            .addComponent(comboBoxTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(281, 281, 281))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
+                .addContainerGap(192, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(75, 75, 75)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGap(77, 77, 77)
+                .addComponent(comboBoxTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(167, 167, 167)
+                .addComponent(btnAtras)
+                .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        MenuPrincipalFrame menuPrincipalFrame = new MenuPrincipalFrame();
+        this.dispose(); // Cierra el JFrame actual
+        menuPrincipalFrame.setVisible(true);
+    }//GEN-LAST:event_btnAtrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -98,7 +144,8 @@ public class OpcionesRegistroUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnAtras;
+    private javax.swing.JComboBox<String> comboBoxTipoUsuario;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
