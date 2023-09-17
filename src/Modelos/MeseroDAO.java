@@ -61,12 +61,34 @@ public class MeseroDAO {
         return numerosMesero;
     }
     
+    public List<Integer> getMeserosByEstado(String estado) {
+        String sql = "SELECT numero_mesero FROM aux_num_mesero WHERE estado = ?";
+
+        List<Integer> numerosMesero = new ArrayList<>();
+
+        try (Connection connection = ConexionBD.obtenerConexion();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, estado);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int numeroMesero = resultSet.getInt("numero_mesero");
+                numerosMesero.add(numeroMesero);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return numerosMesero;
+    }
+    
     public List<Integer> getMesasByEstado(String estado) {
         String sql = "SELECT numero_mesa FROM aux_num_mesa WHERE estado = ?";
         List<Integer> listaMesas = new ArrayList<>();
 
         try (Connection connection = ConexionBD.obtenerConexion();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, estado);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -309,5 +331,40 @@ public class MeseroDAO {
         }
     }
     
+    public List<Integer> obtenerNumerosMesaPorMesero(String nombreMesero) {
+        List<Integer> numerosMesa = new ArrayList<>();
+
+        String sql = "SELECT a.numero_mesa " +
+                     "FROM aux_num_mesa a " +
+                     "JOIN meseros m ON m.numero_mesa = a.numero_mesa " +
+                     "WHERE m.nombre = ? AND a.estado = 'ocupado'";
+
+        try (Connection connection = ConexionBD.obtenerConexion();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, nombreMesero);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String numerosMesaStr = resultSet.getString("numero_mesa");
+
+                if (numerosMesaStr.contains(",")) {
+                    String[] numerosMesaArray = numerosMesaStr.split(",");
+                    for (String numero : numerosMesaArray) {
+                        numerosMesa.add(Integer.parseInt(numero.trim()));
+                    }
+                } else {
+                    numerosMesa.add(Integer.parseInt(numerosMesaStr.trim()));
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return numerosMesa;
+    }
+
+
 }
 

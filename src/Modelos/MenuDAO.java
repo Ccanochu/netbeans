@@ -349,17 +349,20 @@ public class MenuDAO {
             "pe.cantidad_plato as 'cantidad' " +
             "FROM platos pl " +
             "JOIN pedidos pe " +
-            "ON pl.id_plato = pe.id_plato";
+            "ON pl.id_plato = pe.id_plato " +
+            "WHERE pe.estado = 'debe'";
 
         // Consulta para obtener detalles de bebidas pendientes
         String sqlBebidas = "SELECT " +
-            "b.nombre as 'descripcion', " +
-            "(b.precio - (b.precio * 0.18)) as 'precio', " +
-            "(b.precio * 0.18) as 'impuesto', " +
+            "be.nombre as 'descripcion', " +
+            "(be.precio - (be.precio * 0.18)) as 'precio', " +
+            "(be.precio * 0.18) as 'impuesto', " +
             "pe.cantidad_bebida as 'cantidad' " +
-            "FROM bebidas b " +
+            "FROM bebidas be " +
             "JOIN pedidos pe " +
-            "ON b.id_bebida = pe.id_bebida";
+            "ON be.id_bebida = pe.id_bebida " +
+            "WHERE pe.estado = 'debe'";
+
 
         try (Connection connection = ConexionBD.obtenerConexion();
              Statement statement = connection.createStatement()) {

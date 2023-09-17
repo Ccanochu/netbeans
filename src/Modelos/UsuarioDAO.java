@@ -161,7 +161,7 @@ public class UsuarioDAO {
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 if (resultSet.next()) {
-                    nombreUsuario = "administrador "+ resultSet.getString("nombre");
+                    nombreUsuario = resultSet.getString("nombre");
                 }
 
             } catch (SQLException e) {
@@ -178,7 +178,7 @@ public class UsuarioDAO {
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 if (resultSet.next()) {
-                    nombreUsuario = "mesero "+ resultSet.getString("nombre");
+                    nombreUsuario = resultSet.getString("nombre");
                 }
 
             } catch (SQLException e) {

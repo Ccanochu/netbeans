@@ -7,6 +7,8 @@ package Modelos;
 import Clases.Venta;
 import Controlador.ConexionBD;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class VentasDAO {
@@ -34,7 +36,7 @@ public class VentasDAO {
         String sql = "SELECT MAX(id_venta) as max_id FROM ventas";
         
         try (Connection connection = ConexionBD.obtenerConexion();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             
             ResultSet resultSet = preparedStatement.executeQuery();
             
@@ -49,4 +51,5 @@ public class VentasDAO {
         
         return -1; // En caso de error o si no hay registros
     }
+    
 }

@@ -7,6 +7,8 @@ package Modelos;
 import Clases.DetallesVenta;
 import Controlador.ConexionBD;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class DetallesVentaDAO {
@@ -28,4 +30,6 @@ public class DetallesVentaDAO {
             e.printStackTrace();
         }
     }
+    
+    
 }

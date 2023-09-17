@@ -14,6 +14,7 @@ import Modelos.UsuarioDAO;
 import Modelos.MenuDAO;
 import Modelos.VentasDAO;
 import Modelos.DetallesVentaDAO;
+import Modelos.PedidoDAO;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -28,6 +29,7 @@ public class FacturaFrame extends javax.swing.JFrame {
     private UsuarioDAO usuarioDAO;
     private MenuDAO menuDAO;
     private VentasDAO ventasDAO;
+    private PedidoDAO pedidoDAO;
     private DetallesVentaDAO detalleVentaDAO;
     
     Sesion sesion;
@@ -40,13 +42,15 @@ public class FacturaFrame extends javax.swing.JFrame {
         menuDAO = new MenuDAO();
         ventasDAO = new VentasDAO();
         detalleVentaDAO = new DetallesVentaDAO();
-
+        pedidoDAO = new PedidoDAO();
+        
         cargarFecha();
-        cargarMesas();
+        
         
         // Obtener el nombre del usuario desde la sesión
         sesion = Sesion.getInstance();
         getUser();
+        cargarMesas(txtAtendidoPor.getText());
         cargarDatosTabla();
     }
     
@@ -65,16 +69,17 @@ public class FacturaFrame extends javax.swing.JFrame {
         cargarFecha();
     }
     
-    public void cargarMesas(){
+    public void cargarMesas(String nombreMesero){
         // Vaciar el JComboBox
         cbxMesas.removeAllItems();
-    
-        // Llenar el combo con los números de mesero por estado
-        List<Integer> listaMesas = meseroDAO.getMesasByEstado("ocupado");
+
+        // Llenar el combo con los números de mesa por estado "libre" para el mesero
+        List<Integer> listaMesas = meseroDAO.obtenerNumerosMesaPorMesero(nombreMesero);
         for (Integer numero : listaMesas) {
             cbxMesas.addItem(numero.toString());
         }
     }
+
     
     public void cargarFecha(){
         // Obtener la fecha actual
@@ -175,6 +180,11 @@ public class FacturaFrame extends javax.swing.JFrame {
             detalleVentaDAO.saveDetallesVenta(detallesVenta);
         }
     }
+    
+    public void updateEstadoPedidos(){
+        pedidoDAO.actualizarEstadoPedidos("pagado");
+    }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -365,8 +375,11 @@ public class FacturaFrame extends javax.swing.JFrame {
         guardarCliente();
         guardarVenta();
         guardarDetalleVenta();
+        updateEstadoPedidos();
+        cargarDatosTabla();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */

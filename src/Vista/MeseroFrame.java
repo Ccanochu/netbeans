@@ -30,7 +30,7 @@ public class MeseroFrame extends javax.swing.JFrame {
         cbxNumMeseros.removeAllItems();
     
         // Llenar el combo con los números de mesero por estado
-        List<Integer> listaMesas = meseroDAO.obtenerMesasByEstado("libre");
+        List<Integer> listaMesas = meseroDAO.getMeserosByEstado("libre");
         for (Integer numero : listaMesas) {
             cbxNumMeseros.addItem(numero.toString());
         }
@@ -275,7 +275,7 @@ public class MeseroFrame extends javax.swing.JFrame {
         txtNoEditMesasSeleccionadas.setText(texto);
     }
     
-    public void guardarDatos(){
+    public void guardarDatos() {
         String nombre = txtNombre.getText();
         String mail = txtMail.getText();
         String clave = txtClave.getText();
@@ -285,27 +285,53 @@ public class MeseroFrame extends javax.swing.JFrame {
         String mesasSeleccionadas = txtNoEditMesasSeleccionadas.getText();
         int idaux = meseroDAO.obtenerNuevoIdMesero(); // Debes implementar este método
 
-        // Crear un objeto Mesero con los datos
-        Mesero mesero = new Mesero();
-        mesero.setNombre(nombre);
-        mesero.setEmail(mail);
-        mesero.setTelefono(telefono);
-        mesero.setNumero_mesero(numMeseros);
-        mesero.setNumero_mesa(mesasSeleccionadas);
-        mesero.setId_mesero(idaux);
+        // Verificar si hay múltiples mesas seleccionadas
+        if (mesasSeleccionadas.contains(",")) {
+            String[] mesas = mesasSeleccionadas.split(",");
+            for (String mesa : mesas) {
+                // Crear un objeto Mesero para cada mesa
+                Mesero mesero = new Mesero();
+                mesero.setNombre(nombre);
+                mesero.setEmail(mail);
+                mesero.setTelefono(telefono);
+                mesero.setNumero_mesero(numMeseros);
+                mesero.setNumero_mesa(mesa.trim());
+                mesero.setId_mesero(idaux);
 
-        // Crear un objeto Usuario con los datos
-        Usuario usuarioObj = new Usuario();
-        usuarioObj.setUsername(usuario);
-        usuarioObj.setPassword(clave);
-        usuarioObj.setIdaux(idaux);
+                // Crear un objeto Usuario para cada mesero
+                Usuario usuarioObj = new Usuario();
+                usuarioObj.setUsername(usuario);
+                usuarioObj.setPassword(clave);
+                usuarioObj.setIdaux(idaux);
 
-        // Guardar el mesero y el usuario usando los DAOs
-        meseroDAO.saveMesero(mesero);
-        usuarioDAO.saveUsuarioMesero(usuarioObj);
+                // Guardar el mesero y el usuario usando los DAOs
+                meseroDAO.saveMesero(mesero);
+                usuarioDAO.saveUsuarioMesero(usuarioObj);
 
-        meseroDAO.actualizarEstadoMesero(numMeseros);
+                // Actualizar el estado del mesero
+                meseroDAO.actualizarEstadoMesero(numMeseros);
+            }
+        } else {
+            // Solo hay una mesa seleccionada
+            Mesero mesero = new Mesero();
+            mesero.setNombre(nombre);
+            mesero.setEmail(mail);
+            mesero.setTelefono(telefono);
+            mesero.setNumero_mesero(numMeseros);
+            mesero.setNumero_mesa(mesasSeleccionadas.trim());
+            mesero.setId_mesero(idaux);
+
+            Usuario usuarioObj = new Usuario();
+            usuarioObj.setUsername(usuario);
+            usuarioObj.setPassword(clave);
+            usuarioObj.setIdaux(idaux);
+
+            meseroDAO.saveMesero(mesero);
+            usuarioDAO.saveUsuarioMesero(usuarioObj);
+            meseroDAO.actualizarEstadoMesero(numMeseros);
+        }
     }
+
     
     public void actualizarEstadoMesasSeleccionadasPorMesero(){
         String mesasSeleccionadas = txtNoEditMesasSeleccionadas.getText();

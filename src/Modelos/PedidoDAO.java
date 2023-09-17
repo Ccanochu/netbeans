@@ -107,4 +107,19 @@ public class PedidoDAO {
             e.printStackTrace();
         }
     }
+    
+    public void actualizarEstadoPedidos(String nuevoEstado){
+        String sql = "UPDATE pedidos SET estado = ?";
+        
+        try (Connection connection = ConexionBD.obtenerConexion();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, nuevoEstado);
+            System.out.println("Estado del pedido actualizado correctamente.");
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
