@@ -17,6 +17,6 @@ Este proyecto es una aplicación de gestión de restaurante desarrollada en NetB
 
 # Base de Datos
 // Ejemplo de configuración de la conexión a la base de datos
-String url = "jdbc:mysql://localhost:3306/tu_base_de_datos";
-String user = "tu_usuario";
-String password = "tu_contraseña";
+* String url = "jdbc:mysql://localhost:3306/tu_base_de_datos";
+* String user = "tu_usuario";
+* String password = "tu_contraseña";
