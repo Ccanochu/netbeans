@@ -16,6 +16,5 @@ Este proyecto es una aplicación de gestión de restaurante desarrollada en NetB
 ![image](https://github.com/Ccanochu/netbeans/assets/63028873/82263fdb-3862-4911-b159-32510922f66f)
 ![image](https://github.com/Ccanochu/netbeans/assets/63028873/152ff64c-3719-4fd8-8408-71d210f54940)
 ![image](https://github.com/Ccanochu/netbeans/assets/63028873/26d3d4f4-460a-41c7-b7dc-d06478d6a391)
-![image](https://github.com/Ccanochu/netbeans/assets/63028873/2197bb3a-ca17-4b70-995c-cba2907f6238)
 ![image](https://github.com/Ccanochu/netbeans/assets/63028873/86916d9f-fddd-4b8a-a595-f1b8980e6065)
 
