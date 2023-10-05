@@ -12,6 +12,8 @@ package Vista;
 import Modelos.UsuarioDAO;
 
 import Clases.Usuario;
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 import singleton.Sesion;
 
 public class UsuarioFrame extends javax.swing.JFrame {
@@ -22,6 +24,7 @@ public class UsuarioFrame extends javax.swing.JFrame {
      * Creates new form UsuarioFrame
      */
     public UsuarioFrame() {
+        FlatDarkLaf.setup();
         initComponents();
         setLocationRelativeTo(null);
         usuarioDAO = new UsuarioDAO(); // Instancia el DAO
